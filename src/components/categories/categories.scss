@@ -1,0 +1,23 @@
+@import '../../styles/vars.scss';
+
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .category {
+        padding: 14px 20px;
+        background: #F9F9F9;
+        border-radius: 30px;
+        color: #2C2C2C;
+        font-size: 16px;
+        @extend %bold;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    .category.active {
+        color: white;
+        background: #282828;
+    }
+}

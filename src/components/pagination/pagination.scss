@@ -1,0 +1,40 @@
+@import '../../styles/vars.scss';
+
+.pagination {
+    list-style: none;
+    padding-bottom: 100px;
+
+    li {
+        margin-right: 10px;
+        display: inline-flex;
+
+
+        a {
+            width: 45px;
+            height: 45px;
+            border: 1px solid $orange;
+            color: $orange;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+        }
+    }
+
+    li.selected {
+
+        a {
+            color: white;
+            background: $orange;
+        }
+    }
+
+    li.disabled {
+        a {
+            color: gray;
+            border-color: gray;
+        }
+    }
+}

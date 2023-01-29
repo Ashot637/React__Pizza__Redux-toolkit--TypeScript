@@ -1,0 +1,212 @@
+@import '../../styles/vars.scss';
+
+.cart {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 140px;
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #F4F4F4;
+        margin-bottom: 30px;
+    }
+
+    &__title,
+    &__clear {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            margin-right: 10px;
+        }
+    }
+
+    &__clear {
+        color: #cccccc;
+        cursor: pointer;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #F4F4F4;
+
+        &-left,
+        &-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        &-right {
+            max-width: 400px;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        &-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+        }
+
+        &-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        &-subtitle {
+            font-style: 18px;
+            font-weight: 400;
+            font-size: 18px;
+            color: #777777;
+        }
+
+        &-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        &-btn {
+            border-radius: 50%;
+            border: 1px solid $orange;
+            color: $orange;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+
+            &.remove {
+                color: #cccccc;
+                border-color: #cccccc;
+            }
+
+            span {
+                font-size: 20px;
+            }
+        }
+    }
+
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 22px;
+        margin-bottom: 40px;
+    }
+
+    &__btns {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .btn {
+            padding: 17px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+
+            &:nth-child(1) {
+                background: none;
+                color: #c5c5c5;
+                border: 1px solid #c5c5c5;
+            }
+
+            &:nth-child(2) {
+                background: $orange;
+                color: white;
+            }
+        }
+    }
+
+    .empty__cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-top: 50px;
+
+        &-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        &-subtitle {
+            font-weight: 400;
+            font-size: 18px;
+            text-align: center;
+            color: #777777;
+            margin-bottom: 30px;
+            max-width: 520px;
+        }
+
+        &-img {
+            width: 260px;
+            height: 260px;
+            margin-bottom: 70px;
+        }
+
+        &-btn {
+            font-weight: 700;
+            color: white;
+            background: #282828;
+            padding: 15px 30px;
+            border-radius: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .cart .cart__item {
+        flex-direction: column;
+    }
+
+    .cart__item-left {
+        margin-bottom: 20px;
+    }
+
+    .cart__item-right {
+        max-width: 300px;
+    }
+}
+
+
+@media screen and (max-width: 420px) {
+    .cart__clear {
+        max-width: 110px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .cart__clear {
+        max-width: 110px;
+    }
+
+    .cart__btns,
+    .cart__bottom {
+        flex-direction: column;
+    }
+
+    .cart .btn:nth-child(1),
+    .cart__bottom span:nth-child(1) {
+        margin-bottom: 10px;
+    }
+
+}

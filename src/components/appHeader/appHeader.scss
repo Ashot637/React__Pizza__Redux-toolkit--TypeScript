@@ -1,0 +1,66 @@
+@import '../../styles/vars.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 50px 0;
+    border-bottom: 1px solid #F6F6F6;
+    margin-bottom: 40px;
+
+
+    &__inner {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            margin-right: 17px;
+        }
+
+        .logo__text {
+
+
+            .logo__title {
+                font-size: 24px;
+                color: black;
+                @extend %extra;
+                line-height: 29px;
+            }
+
+            .logo__subtitle {
+                font-size: 16;
+                color: #7B7B7B;
+                @extend %reg;
+                line-height: 19px;
+            }
+        }
+    }
+
+    &__cart {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 150px;
+        height: 50px;
+        padding: 0 20px;
+        background: $orange;
+        color: white;
+        @extend %bold;
+        border-radius: 30px;
+
+        .total__items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

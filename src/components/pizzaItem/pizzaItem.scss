@@ -1,0 +1,107 @@
+@import '../../styles/vars.scss';
+
+.pizza {
+    width: 280px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+
+    &__img {
+        width: 260px;
+        height: 260px;
+        margin: 0 auto 5px;
+    }
+
+    &__title {
+        font-weight: 800;
+        font-size: 20px;
+        color: black;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    &__params {
+        padding: 5px 7px;
+        background: #F3F3F3;
+        color: #777777;
+        width: 280px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        gap: 7px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    &__doughs,
+    &__sizes {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+
+    &__dough,
+    &__size {
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    &__size.active,
+    &__dough.active {
+        background: white;
+        color: black;
+    }
+
+    &__order {
+        font-size: 22px;
+        font-weight: 700;
+        width: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-btn {
+            font-size: 16px;
+            font-weight: 700;
+            color: $orange;
+            border-radius: 30px;
+            border: 1px solid $orange;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            cursor: pointer;
+
+            &:hover {
+                background: $orange;
+                color: white;
+
+                .pizza__order-count {
+                    background: white;
+                    color: orange;
+                }
+            }
+
+        }
+
+        &-count {
+            font-weight: 700;
+            color: white;
+            border-radius: 50%;
+            font-size: 13px;
+            background: $orange;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

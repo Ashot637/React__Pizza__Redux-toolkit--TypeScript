@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(238, 178, 66);
+    font-family: 'Noto Sans Display', sans-serif;
+}
+
+main {
+    margin: 50px auto;
+    max-width: 1350px;
+    background: white;
+    border-radius: 10px;
+    padding: 0 20px;
+}
+
+.container {
+    max-width: 1225px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1010px) {}
+
+h1 {
+    margin-bottom: 35px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.pizza__list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 280px);
+    justify-content: space-around;
+    gap: 65px 35px;
+    margin-bottom: 50px;
+}
