@@ -1,9 +1,18 @@
-@import '../../styles/vars.scss';
-
 .categories {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+        background: white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #FE5F1E;
+        border-radius: 10px;
+    }
 
     .category {
         padding: 14px 20px;
@@ -11,7 +20,7 @@
         border-radius: 30px;
         color: #2C2C2C;
         font-size: 16px;
-        @extend %bold;
+        font-weight: 700;
         margin-right: 8px;
         cursor: pointer;
     }
@@ -19,5 +28,13 @@
     .category.active {
         color: white;
         background: #282828;
+    }
+}
+
+@media screen and (max-width: 1010px) {
+    .categories {
+        width: 100%;
+        overflow-x: scroll;
+        padding-bottom: 10px;
     }
 }

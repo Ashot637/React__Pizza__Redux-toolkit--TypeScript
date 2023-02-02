@@ -30,13 +30,20 @@ const cartSlice = createSlice({
             state.totalPrice = state.items.reduce((sum, obj) => {
                 return obj.count * obj.price + sum;
             }, 0);
+        },
+        removeAllItems(state) {
+            state.items = []
         }
     }
 })
 
-export default cartSlice.reducer;
+export const selectCart = state => state.cart;
+export const selectCartItemById = id => state => state.cart.items.find(obj => obj.id === id);
 
 export const {
     addItem,
     removeItem,
+    removeAllItems
 } = cartSlice.actions;
+
+export default cartSlice.reducer;

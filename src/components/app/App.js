@@ -6,7 +6,6 @@ import NotFound from "../../pages/404";
 
 
 const App = () => {
-
     return (
         <Router>
             <main>

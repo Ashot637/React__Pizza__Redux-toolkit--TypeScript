@@ -1,6 +1,6 @@
 import './pizzaItem.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../redux/slices/cartSlice';
+import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
 import { useState } from 'react';
 
 
@@ -9,7 +9,7 @@ const types = ['тонкое', 'традиционное'];
 const PizzaItem = ({ id, img, title, typesInd, sizes, price }) => {
     const [selectedSize, setSelectedSize] = useState(0);
     const [selectedType, setSelectedType] = useState(0);
-    const cartItem = useSelector(store => store.cart.items.find(obj => obj.id === id));
+    const cartItem = useSelector(selectCartItemById(id));
     const addedCount = cartItem ? cartItem.count : 0;
     const dispatch = useDispatch();
 

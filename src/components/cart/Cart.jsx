@@ -3,15 +3,21 @@ import emptyCart from '../../img/empty-cart.png';
 
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem } from '../../redux/slices/cartSlice';
+import { selectCart, removeAllItems } from '../../redux/slices/cartSlice';
+import CartItem from '../cartItem/CartItem';
 
 const Cart = () => {
-    const { totalPrice, items } = useSelector(store => store.cart);
+    const { totalPrice, items } = useSelector(selectCart);
+    const dispatch = useDispatch();
 
     const totalCount = items ? items.reduce((sum, item) => sum + item.count, 0) : 0;
 
     if (!items.length) {
         return <CartEmpty />
+    }
+
+    const onClearCart = () => {
+        dispatch(removeAllItems())
     }
 
     return (
@@ -23,7 +29,7 @@ const Cart = () => {
                     </span>
                     <h2>Корзина</h2>
                 </div>
-                <div className="cart__clear">
+                <div className="cart__clear" onClick={onClearCart}>
                     <span className="material-symbols-outlined">
                         delete
                     </span>
@@ -31,7 +37,13 @@ const Cart = () => {
                 </div>
             </div>
             <div className="cart__items">
-                <CartItems />
+                {
+                    items.map(item => {
+                        return (
+                            <CartItem key={item.id} item={item} />
+                        )
+                    })
+                }
             </div>
             <div className="cart__bottom">
                 <span>Всего пицц: <b>{totalCount} шт.</b></span>
@@ -67,53 +79,6 @@ const CartEmpty = () => {
             </div>
         </div>
 
-    )
-}
-
-const CartItems = () => {
-    const { items } = useSelector(store => store.cart);
-    const dispatch = useDispatch();
-
-
-    return (
-        <>
-            {
-                items.map(item => {
-                    return (
-                        <div className="cart__item" key={Math.round(Math.random() * 100000)}>
-                            <div className="cart__item-left">
-                                <img src={item.img} alt="" className="cart__item-img" />
-                                <div className="cart__item-info">
-                                    <div className="cart__item-title">{item.title}</div>
-                                    <div className="cart__item-subtitle">{item.type}, {item.size}см.</div>
-                                </div>
-                            </div>
-                            <div className="cart__item-right">
-                                <div className="cart__item-counter">
-                                    <button className="cart__item-btn">
-                                        <span className="material-symbols-outlined">
-                                            remove
-                                        </span>
-                                    </button>
-                                    <span className="cart__item-count">{item.count}</span>
-                                    <button className="cart__item-btn">
-                                        <span className="material-symbols-outlined">
-                                            add
-                                        </span>
-                                    </button>
-                                </div>
-                                <div className="cart__item-price">{item.price} ₽</div>
-                                <button className="cart__item-btn remove" onClick={() => dispatch(removeItem(item.id))}>
-                                    <span className="material-symbols-outlined">
-                                        close
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    )
-                })
-            }
-        </>
     )
 }
 

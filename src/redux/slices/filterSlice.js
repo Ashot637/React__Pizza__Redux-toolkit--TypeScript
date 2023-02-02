@@ -22,7 +22,8 @@ const initialState = {
     ],
     following: 'desc',
     followingList: ['desc', 'asc'],
-    currentPage: 1
+    currentPage: 1,
+    searchValue: '',
 }
 
 const filtersSlice = createSlice({
@@ -46,16 +47,23 @@ const filtersSlice = createSlice({
             state.sortType = action.payload.sortType;
             state.categoryId = Number(action.payload.categoryId);
             state.currentPage = Number(action.payload.currentPage)
+        },
+        setSearchValue(state, action) {
+            state.searchValue = action.payload;
         }
     }
 })
 
-export default filtersSlice.reducer;
+
+export const selectFilter = state => state.filter;
 
 export const {
     setCategoryId,
     setSortType,
     setFollowing,
     setPage,
-    setFilters
+    setFilters,
+    setSearchValue
 } = filtersSlice.actions;
+
+export default filtersSlice.reducer;

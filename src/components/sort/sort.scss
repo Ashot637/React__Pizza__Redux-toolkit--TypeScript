@@ -54,3 +54,29 @@
         }
     }
 }
+
+@media screen and (max-width: 777px) {
+    .sort__flex {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 777px) {
+    .display__block {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .sort__flex {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .display__block {
+        width: 100%;
+    }
+}

@@ -1,10 +1,13 @@
 import './appHeader.scss';
 import logo from '../../img/logo.png'
+import SearchPanel from '../searchPanel/SearchPanel';
+
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { selectCart } from '../../redux/slices/cartSlice';
 
 const AppHeader = ({ secHeader }) => {
-    const { totalPrice, items } = useSelector(state => state.cart);
+    const { totalPrice, items } = useSelector(selectCart);
 
     const totalCount = items ? items.reduce((sum, item) => sum + item.count, 0) : 0;
 
@@ -18,6 +21,9 @@ const AppHeader = ({ secHeader }) => {
                         <div className="logo__subtitle">Самая вкусная пицца во вселенной</div>
                     </div>
                 </Link>
+                <div className="display__none" style={secHeader ? { display: 'none' } : null} >
+                    <SearchPanel />
+                </div>
                 <Link to={'/cart'} className="header__cart" style={secHeader ? { display: 'none' } : null}>
                     <div className="total__cost">{totalPrice} ₽</div>
                     |

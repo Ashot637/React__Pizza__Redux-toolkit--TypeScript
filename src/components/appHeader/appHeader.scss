@@ -32,15 +32,15 @@
             .logo__title {
                 font-size: 24px;
                 color: black;
-                @extend %extra;
+                font-weight: 800;
                 line-height: 29px;
             }
 
             .logo__subtitle {
                 font-size: 16;
                 color: #7B7B7B;
-                @extend %reg;
                 line-height: 19px;
+                font-weight: 400;
             }
         }
     }
@@ -54,13 +54,25 @@
         padding: 0 20px;
         background: $orange;
         color: white;
-        @extend %bold;
         border-radius: 30px;
+        font-weight: 700;
 
         .total__items {
             display: flex;
             align-items: center;
             justify-content: center;
         }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .header__logo {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 777px) {
+    .display__none {
+        display: none;
     }
 }

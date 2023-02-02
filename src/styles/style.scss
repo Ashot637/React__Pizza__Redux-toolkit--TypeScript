@@ -30,7 +30,16 @@ main {
     margin-bottom: 30px;
 }
 
-@media screen and (max-width: 1010px) {}
+@media screen and (max-width: 1010px) {
+    .filters {
+        flex-direction: column;
+        position: relative;
+
+        .categories {
+            margin-bottom: 20px;
+        }
+    }
+}
 
 h1 {
     margin-bottom: 35px;
@@ -51,4 +60,14 @@ button {
     justify-content: space-around;
     gap: 65px 35px;
     margin-bottom: 50px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FE5F1E;
+    border-radius: 10px;
 }
