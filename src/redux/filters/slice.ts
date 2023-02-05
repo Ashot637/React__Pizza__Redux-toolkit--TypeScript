@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FollowingType, IFilterSliceState, Sort } from "./types";
 
-const initialState = {
+const initialState: IFilterSliceState = {
     categoryId: 0,
     sortType: {
         label: 'популярности',
@@ -30,32 +31,30 @@ const filtersSlice = createSlice({
     name: 'filters',
     initialState,
     reducers: {
-        setCategoryId(state, action) {
+        setCategoryId(state, action: PayloadAction<number>) {
             state.categoryId = action.payload;
         },
-        setSortType(state, action) {
+        setSortType(state, action: PayloadAction<Sort>) {
             state.sortType = action.payload;
         },
-        setFollowing(state, action) {
+        setFollowing(state, action: PayloadAction<FollowingType>) {
             state.following = action.payload;
         },
-        setPage(state, action) {
+        setPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload;
         },
-        setFilters(state, action) {
+        setFilters(state, action: PayloadAction<IFilterSliceState>) {
             state.following = action.payload.following;
             state.sortType = action.payload.sortType;
             state.categoryId = Number(action.payload.categoryId);
             state.currentPage = Number(action.payload.currentPage)
         },
-        setSearchValue(state, action) {
+        setSearchValue(state, action: PayloadAction<string>) {
             state.searchValue = action.payload;
         }
     }
 })
 
-
-export const selectFilter = state => state.filter;
 
 export const {
     setCategoryId,

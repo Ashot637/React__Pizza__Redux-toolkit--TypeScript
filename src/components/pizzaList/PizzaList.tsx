@@ -1,19 +1,29 @@
 import PizzaItem from "../pizzaItem/PizzaItem";
 import Skeleton from "../skeleton/Skeleton";
-import NotFoundLayout from "../layouts/NotFoundLayout";
+import NotFoundLayout from "../../layouts/NotFoundLayout";
 import { useSelector } from "react-redux";
-import { selectPizza } from "../../redux/slices/pizzaSlice";
+import { FC } from "react";
+import { selectPizza } from "../../redux/pizza/selectors";
 
-const PizzaList = () => {
+interface IPizza {
+    id: number,
+    title: string,
+    imageUrl: string,
+    types: number[],
+    sizes: number[],
+    price: number
+}
+
+const PizzaList: FC = () => {
     const { items, status } = useSelector(selectPizza);
 
-    const setContent = (status) => {
+    const setContent = (status: string) => {
         switch (status) {
             case 'loading':
                 return <Skeleton />;
             case 'success':
                 return (
-                    items.map(pizza =>
+                    items.map((pizza: IPizza) =>
                         <PizzaItem
                             key={pizza.id}
                             id={pizza.id}

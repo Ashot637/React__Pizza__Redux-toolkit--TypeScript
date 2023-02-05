@@ -27,8 +27,13 @@
     }
 
     &__clear {
-        color: #cccccc;
+        color: #919191;
         cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            color: rgb(90, 90, 90);
+        }
     }
 
     &__item {
@@ -89,10 +94,34 @@
             align-items: center;
             justify-content: center;
             background: none;
+            transition: .2s;
+
+            &:hover {
+                color: white;
+                background: $orange;
+                border: none;
+            }
 
             &.remove {
-                color: #cccccc;
-                border-color: #cccccc;
+                color: #919191;
+                border-color: #919191;
+
+                &:hover {
+                    color: white;
+                    background: #919191;
+                    border: none;
+                }
+            }
+
+            &:disabled {
+                color: #919191;
+                border-color: #919191;
+
+                &:hover {
+                    cursor: default;
+                    background: none;
+                    border: 1px solid #919191;
+                }
             }
 
             span {
@@ -120,16 +149,26 @@
             border: none;
             border-radius: 30px;
             font-size: 16px;
+            transition: .2s;
 
             &:nth-child(1) {
                 background: none;
-                color: #c5c5c5;
-                border: 1px solid #c5c5c5;
+                color: #919191;
+                border: 1px solid #919191;
+
+                &:hover {
+                    color: white;
+                    background: #808080;
+                }
             }
 
             &:nth-child(2) {
                 background: $orange;
                 color: white;
+
+                &:hover {
+                    filter: grayscale(.3);
+                }
             }
         }
     }
@@ -169,6 +208,11 @@
             background: #282828;
             padding: 15px 30px;
             border-radius: 30px;
+            transition: .2s;
+
+            &:hover {
+                background: #3a3a3a;
+            }
         }
     }
 }

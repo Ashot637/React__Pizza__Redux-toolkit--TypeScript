@@ -1,27 +1,28 @@
-import AppHeader from "../components/appHeader/AppHeader";
 import Categories from "../components/categories/Categories";
 import Sort from "../components/sort/Sort";
 import PizzaList from "../components/pizzaList/PizzaList";
 import Pagination from "../components/pagination/Pagination";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId, setSortType, selectFilter } from "../redux/slices/filterSlice";
-import { fetchPizzas } from "../redux/slices/pizzaSlice";
-// import qs from 'qs';
-// import { useNavigate } from "react-router-dom";
-// import { DataContext } from "../context/context";
+import { FC, useCallback, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../redux/store";
+import qs from 'qs';
+import { useNavigate } from "react-router-dom";
+import { selectFilter } from "../redux/filters/selectors";
+import { setCategoryId, setPage, setSortType } from "../redux/filters/slice";
+import { Sort as SortingType } from "../redux/filters/types";
+import { fetchPizzas } from "../redux/pizza/asyncActions";
 
-const MainPage = () => {
+const MainPage: FC = () => {
     const { categoryId, sortType, following, currentPage, searchValue } = useSelector(selectFilter);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    // const navigate = useNavigate();
-    // const isMounted = useRef(false);
-    // const isSearch = useRef(false);
+    const navigate = useNavigate();
+    const isMounted = useRef(false);
+    const isSearch = useRef(false);
 
-    const onRequest = (sort, category, following, currentPage) => {
-        dispatch(fetchPizzas({ sort, category, following, currentPage }));
+    const onRequest = (sort: string, category: number, following: string, currentPage: number, searchValue: string) => {
+        dispatch(fetchPizzas({ sort, category, following, currentPage, searchValue }));
     };
 
     useEffect(() => {
@@ -29,10 +30,11 @@ const MainPage = () => {
             sortType.name,
             categoryId,
             following,
-            currentPage
+            currentPage,
+            searchValue
         )
-    }, [categoryId, sortType, currentPage, following])
-    // navigate
+    }, [categoryId, sortType, currentPage, following, searchValue])
+
     // useEffect(() => {
     //     if (isMounted.current) {
     //         const queryString = qs.stringify({
@@ -55,7 +57,7 @@ const MainPage = () => {
     //             setFilters({
     //                 ...params,
     //                 sortType
-    //             }),
+    //             })
     //         );
     //         isSearch.current = true;
     //     }
@@ -73,20 +75,24 @@ const MainPage = () => {
     //     isSearch.current = false;
     // }, [categoryId, sortType, following, currentPage]);
 
-    const onClickCategory = (i) => {
-        dispatch(setCategoryId(i));
-    };
+    useEffect(() => {
+        dispatch(setCategoryId(0))
+    }, [searchValue])
 
-    const onClickSort = (obj) => {
+    const onClickCategory = useCallback((i: number) => {
+        dispatch(setCategoryId(i));
+        dispatch(setPage(1))
+    }, []);
+
+    const onClickSort = useCallback((obj: SortingType) => {
         dispatch(setSortType(obj));
-    }
+    }, []);
 
     return (
         <>
-            <AppHeader />
             <div className="filters">
                 <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
-                <Sort onClickSort={onClickSort} following={following} />
+                <Sort onClickSort={onClickSort} />
             </div>
             <h1>Все пиццы</h1>
             <PizzaList />

@@ -1,16 +1,26 @@
 import './pizzaItem.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
-import { useState } from 'react';
+import { useState, useEffect, FC } from 'react';
+import { selectCartItemById } from '../../redux/cart/selectors';
+import { addItem } from '../../redux/cart/slice';
 
+interface IPizzaItemProps {
+    id: number,
+    img: string,
+    title: string,
+    typesInd: number[],
+    sizes: number[],
+    price: number
+}
 
 const types = ['тонкое', 'традиционное'];
 
-const PizzaItem = ({ id, img, title, typesInd, sizes, price }) => {
+const PizzaItem: FC<IPizzaItemProps> = ({ id, img, title, typesInd, sizes, price }) => {
     const [selectedSize, setSelectedSize] = useState(0);
     const [selectedType, setSelectedType] = useState(0);
-    const cartItem = useSelector(selectCartItemById(id));
-    const addedCount = cartItem ? cartItem.count : 0;
+    const [itemPrice, setItemPrice] = useState(price);
+    const cartItems = useSelector(selectCartItemById(id));
+    const addedCount = cartItems ? cartItems.reduce((sum: number, item: any) => sum + item.count, 0) : 0;
     const dispatch = useDispatch();
 
     const onAddPizza = () => {
@@ -18,21 +28,28 @@ const PizzaItem = ({ id, img, title, typesInd, sizes, price }) => {
             id,
             title,
             img,
-            price,
+            price: itemPrice,
             size: sizes[selectedSize],
-            type: types[selectedType]
+            type: types[selectedType],
+            count: 0
         }
 
         dispatch(addItem(item));
     }
 
-    const onChangeSize = (i) => {
+    const onChangeSize = (i: number) => {
         setSelectedSize(i);
     }
 
-    const onChangeType = (i) => {
+    const onChangeType = (i: number) => {
         setSelectedType(i);
     }
+
+    useEffect(() => {
+        setItemPrice(price)
+        const additionalSum = selectedSize * 60 + selectedType * 80;
+        setItemPrice((price: number) => Math.floor(price + additionalSum))
+    }, [selectedSize, selectedType, price])
 
     return (
         <div className="pizza">
@@ -41,7 +58,7 @@ const PizzaItem = ({ id, img, title, typesInd, sizes, price }) => {
             <div className="pizza__params">
                 <div className="pizza__doughs">
                     {
-                        typesInd.map((ind, i) => {
+                        typesInd.map((ind: number, i: number) => {
                             return (
                                 <div key={i}
                                     className={`pizza__dough ${selectedType === i ? 'active' : null}`}
@@ -52,7 +69,7 @@ const PizzaItem = ({ id, img, title, typesInd, sizes, price }) => {
                 </div>
                 <div className="pizza__sizes">
                     {
-                        sizes.map((size, i) => {
+                        sizes.map((size: number, i: number) => {
                             return (
                                 <div key={i}
                                     className={`pizza__size ${selectedSize === i ? 'active' : null}`}
@@ -64,7 +81,7 @@ const PizzaItem = ({ id, img, title, typesInd, sizes, price }) => {
             </div>
             <div className="pizza__order">
                 <div className="pizza__price">
-                    от {price} ₽
+                    от {itemPrice} ₽
                 </div>
                 <button onClick={onAddPizza} className="pizza__order-btn">
                     <span>+</span>

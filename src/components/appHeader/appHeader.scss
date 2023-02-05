@@ -57,6 +57,13 @@
         border-radius: 30px;
         font-weight: 700;
 
+        .total__cost {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
         .total__items {
             display: flex;
             align-items: center;

@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import './../pizzaItem/pizzaItem.scss';
 import './skeleton.scss';
 
-const Skeleton = () => {
+const Skeleton: FC = () => {
     return (
         <>
             <View />
@@ -12,7 +13,7 @@ const Skeleton = () => {
     )
 }
 
-const View = () => {
+const View: FC = () => {
     return (
         <div className="pizza skeleton__pizza">
             <div className="skeleton__pizza-img"></div>

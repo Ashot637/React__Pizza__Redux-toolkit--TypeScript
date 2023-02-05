@@ -3,14 +3,16 @@ import emptyCart from '../../img/empty-cart.png';
 
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCart, removeAllItems } from '../../redux/slices/cartSlice';
 import CartItem from '../cartItem/CartItem';
+import { FC } from 'react';
+import { selectCart } from '../../redux/cart/selectors';
+import { removeAllItems } from '../../redux/cart/slice';
 
-const Cart = () => {
+const Cart: FC = () => {
     const { totalPrice, items } = useSelector(selectCart);
     const dispatch = useDispatch();
 
-    const totalCount = items ? items.reduce((sum, item) => sum + item.count, 0) : 0;
+    const totalCount = items ? items.reduce((sum: number, item: any) => sum + item.count, 0) : 0;
 
     if (!items.length) {
         return <CartEmpty />
@@ -38,9 +40,9 @@ const Cart = () => {
             </div>
             <div className="cart__items">
                 {
-                    items.map(item => {
+                    items.map((item: any) => {
                         return (
-                            <CartItem key={item.id} item={item} />
+                            <CartItem key={item.id + item.size + item.type} item={item} />
                         )
                     })
                 }

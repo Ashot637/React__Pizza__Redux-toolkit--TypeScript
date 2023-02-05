@@ -1,8 +1,20 @@
+import { FC } from "react";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../../redux/slices/cartSlice";
+import { addItem, minusItem, removeItem } from "../../redux/cart/slice";
+import { ComparingItem, CartItem as CartItemType } from "../../redux/cart/types";
 
-const CartItem = ({ item }) => {
+
+interface ICartItemProps {
+    item: CartItemType
+}
+
+const CartItem: FC<ICartItemProps> = ({ item }) => {
     const dispatch = useDispatch();
+
+    const removingItem: ComparingItem = {
+        id: item.id,
+        price: item.price
+    }
 
     return (
         <div className="cart__item">
@@ -15,20 +27,23 @@ const CartItem = ({ item }) => {
             </div>
             <div className="cart__item-right">
                 <div className="cart__item-counter">
-                    <button className="cart__item-btn">
+                    <button
+                        disabled={item.count === 1}
+                        className="cart__item-btn"
+                        onClick={() => dispatch(minusItem(item))}>
                         <span className="material-symbols-outlined">
                             remove
                         </span>
                     </button>
                     <span className="cart__item-count">{item.count}</span>
-                    <button className="cart__item-btn">
+                    <button className="cart__item-btn" onClick={() => dispatch(addItem(item))}>
                         <span className="material-symbols-outlined">
                             add
                         </span>
                     </button>
                 </div>
                 <div className="cart__item-price">{item.price} ₽</div>
-                <button className="cart__item-btn remove" onClick={() => dispatch(removeItem(item.id))}>
+                <button className="cart__item-btn remove" onClick={() => dispatch(removeItem(removingItem))}>
                     <span className="material-symbols-outlined">
                         close
                     </span>

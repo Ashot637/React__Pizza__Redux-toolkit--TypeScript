@@ -5,6 +5,11 @@
     height: 460px;
     display: flex;
     flex-direction: column;
+    transition: .2s;
+
+    &:hover {
+        transform: scale(1.07);
+    }
 
     &__img {
         width: 260px;
@@ -50,6 +55,11 @@
         width: 100%;
         border-radius: 5px;
         cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background: rgb(222, 222, 222);
+        }
     }
 
     &__size.active,

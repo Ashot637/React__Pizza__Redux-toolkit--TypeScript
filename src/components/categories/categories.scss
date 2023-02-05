@@ -23,6 +23,11 @@
         font-weight: 700;
         margin-right: 8px;
         cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background: #cac9c9;
+        }
     }
 
     .category.active {

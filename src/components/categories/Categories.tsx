@@ -1,7 +1,14 @@
+import { FC, memo } from 'react';
 import './categories.scss';
 
-const Categories = ({ categoryId, onClickCategory }) => {
-    const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+interface ICategoriesProps {
+    categoryId: number,
+    onClickCategory: (i: number) => void;
+}
+
+const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
+const Categories: FC<ICategoriesProps> = memo(({ categoryId, onClickCategory }) => {
 
     return (
         <div className="categories">
@@ -16,6 +23,6 @@ const Categories = ({ categoryId, onClickCategory }) => {
             }
         </div>
     )
-}
+})
 
 export default Categories;
