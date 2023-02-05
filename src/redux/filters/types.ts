@@ -3,13 +3,11 @@ export type Sort = {
     name: 'rating' | 'price' | 'title'
 }
 
-export type FollowingType = 'desc' | 'asc';
-
 export interface IFilterSliceState {
     categoryId: number,
     sortType: Sort,
     sortList: Sort[],
-    following: FollowingType,
+    following: string,
     followingList: string[],
     currentPage: number,
     searchValue: string

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FollowingType, IFilterSliceState, Sort } from "./types";
+import { IFilterSliceState, Sort } from "./types";
 
 const initialState: IFilterSliceState = {
     categoryId: 0,
@@ -37,7 +37,7 @@ const filtersSlice = createSlice({
         setSortType(state, action: PayloadAction<Sort>) {
             state.sortType = action.payload;
         },
-        setFollowing(state, action: PayloadAction<FollowingType>) {
+        setFollowing(state, action: PayloadAction<string>) {
             state.following = action.payload;
         },
         setPage(state, action: PayloadAction<number>) {

@@ -6,7 +6,6 @@ import Pagination from "../components/pagination/Pagination";
 import { FC, useCallback, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../redux/store";
-import qs from 'qs';
 import { useNavigate } from "react-router-dom";
 import { selectFilter } from "../redux/filters/selectors";
 import { setCategoryId, setPage, setSortType } from "../redux/filters/slice";
@@ -14,7 +13,7 @@ import { Sort as SortingType } from "../redux/filters/types";
 import { fetchPizzas } from "../redux/pizza/asyncActions";
 
 const MainPage: FC = () => {
-    const { categoryId, sortType, following, currentPage, searchValue } = useSelector(selectFilter);
+    const { categoryId, sortType, following, currentPage, searchValue, sortList } = useSelector(selectFilter);
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
@@ -35,13 +34,17 @@ const MainPage: FC = () => {
         )
     }, [categoryId, sortType, currentPage, following, searchValue])
 
+
+
+    //---------temporarily not working-----------
+
     // useEffect(() => {
     //     if (isMounted.current) {
     //         const queryString = qs.stringify({
-    //             sortType: sortType.name,
+    //             sort: sortType.name,
     //             categoryId,
     //             currentPage,
-    //             following,
+    //             following
     //         });
 
     //         navigate(`?${queryString}`);
@@ -51,13 +54,17 @@ const MainPage: FC = () => {
 
     // useEffect(() => {
     //     if (window.location.search) {
-    //         const params = qs.parse(window.location.search.substring(1));
+    //         const params = qs.parse(window.location.search.substring(1)) as unknown as SearchParams;
+    //         const sortType = sortList.find(obj => obj.name === params.sort);
 
     //         dispatch(
     //             setFilters({
-    //                 ...params,
-    //                 sortType
-    //             })
+    //                 categoryId: params.category,
+    //                 following: params.following,
+    //                 sortType,
+    //                 currentPage: Number(params.currentPage),
+    //                 searchValue: params.searchValue
+    //             } as IFilterSliceState)
     //         );
     //         isSearch.current = true;
     //     }
@@ -69,11 +76,15 @@ const MainPage: FC = () => {
     //             sortType.name,
     //             categoryId,
     //             following,
-    //             currentPage)
+    //             currentPage,
+    //             searchValue)
     //     }
 
     //     isSearch.current = false;
-    // }, [categoryId, sortType, following, currentPage]);
+    // }, [categoryId, sortType, following, currentPage, searchValue]);
+
+
+    //---------------------------------------------
 
     useEffect(() => {
         dispatch(setCategoryId(0))
