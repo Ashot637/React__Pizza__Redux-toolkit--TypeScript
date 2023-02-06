@@ -6,13 +6,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FC, useEffect, useRef } from 'react';
 import { selectCart } from '../../redux/cart/selectors';
+import { CartItem } from '../../redux/cart/types';
 
 const AppHeader: FC = () => {
     const { totalPrice, items } = useSelector(selectCart);
     const location = useLocation();
     const isMounted = useRef(false);
 
-    const totalCount = items ? items.reduce((sum: number, item: any) => sum + item.count, 0) : 0;
+    const totalCount = items ? items.reduce((sum: number, item: CartItem) => sum + item.count, 0) : 0;
 
     useEffect(() => {
         if (isMounted) {

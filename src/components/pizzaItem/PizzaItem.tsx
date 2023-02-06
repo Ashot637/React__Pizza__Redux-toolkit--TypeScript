@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, FC } from 'react';
 import { selectCartItemById } from '../../redux/cart/selectors';
 import { addItem } from '../../redux/cart/slice';
+import { CartItem } from '../../redux/cart/types';
 
 interface IPizzaItemProps {
     id: number,
@@ -20,7 +21,7 @@ const PizzaItem: FC<IPizzaItemProps> = ({ id, img, title, typesInd, sizes, price
     const [selectedType, setSelectedType] = useState(0);
     const [itemPrice, setItemPrice] = useState(price);
     const cartItems = useSelector(selectCartItemById(id));
-    const addedCount = cartItems ? cartItems.reduce((sum: number, item: any) => sum + item.count, 0) : 0;
+    const addedCount = cartItems ? cartItems.reduce((sum: number, item: CartItem) => sum + item.count, 0) : 0;
     const dispatch = useDispatch();
 
     const onAddPizza = () => {
