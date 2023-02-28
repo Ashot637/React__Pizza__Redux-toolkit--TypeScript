@@ -43,7 +43,7 @@ const PizzaList: FC = () => {
             {
                 status === 'error' ? < NotFoundLayout />
                     :
-                    <div className="pizza__list">{setContent(status)}</div>
+                    <div className="items__list">{setContent(status)}</div>
             }
         </>
     )

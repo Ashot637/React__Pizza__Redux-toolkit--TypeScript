@@ -16,17 +16,17 @@ const pizzaSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchPizzas.pending, (state, action) => {
+        builder.addCase(fetchPizzas.pending, (state) => {
             state.status = PizzaStatus.LOADING;
             state.items = [];
         });
 
-        builder.addCase(fetchPizzas.fulfilled, (state, action) => {
+        builder.addCase(fetchPizzas.fulfilled, (state, action: PayloadAction<Pizza[]>) => {
             state.items = action.payload;
             state.status = PizzaStatus.SUCCESS;
         });
 
-        builder.addCase(fetchPizzas.rejected, (state, action) => {
+        builder.addCase(fetchPizzas.rejected, (state) => {
             state.status = PizzaStatus.ERROR;
             state.items = [];
         })

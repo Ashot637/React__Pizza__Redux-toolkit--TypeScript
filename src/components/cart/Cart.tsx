@@ -43,7 +43,7 @@ const Cart: FC = () => {
                 {
                     items.map((item: CartItemType) => {
                         return (
-                            <CartItem key={item.id + item.size + item.type} item={item} />
+                            <CartItem key={Math.random()} item={item} />
                         )
                     })
                 }

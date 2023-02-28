@@ -17,6 +17,13 @@ main {
     padding: 0 20px;
 }
 
+@media screen and (max-width: 1370px) {
+    main {
+        margin: 0;
+    }
+}
+
+
 .container {
     max-width: 1225px;
     width: 100%;
@@ -29,6 +36,7 @@ main {
     justify-content: space-between;
     margin-bottom: 30px;
 }
+
 
 @media screen and (max-width: 1010px) {
     .filters {
@@ -53,7 +61,7 @@ button {
     cursor: pointer;
 }
 
-.pizza__list {
+.items__list {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, 280px);

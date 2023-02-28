@@ -7,7 +7,8 @@ import './pagination.scss';
 
 const Pagination: FC = () => {
     const dispatch = useDispatch();
-    const { currentPage } = useSelector(selectFilter)
+    const { currentPage, categoryId } = useSelector(selectFilter)
+
 
     return (
         <ReactPaginate
@@ -16,10 +17,9 @@ const Pagination: FC = () => {
             nextLabel=">"
             onPageChange={(e) => dispatch(setPage(e.selected + 1))}
             pageRangeDisplayed={5}
-            pageCount={3}
+            pageCount={categoryId === 0 ? 3 : 1}
             previousLabel="<"
             forcePage={currentPage - 1}
-
         />
     )
 }

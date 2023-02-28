@@ -1,17 +1,46 @@
 import './searchPanel.scss';
 import { debounce } from "debounce";
-import { useCallback, useState, useRef, FC, ChangeEvent } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSearchValue } from '../../redux/filters/slice';
+import { useCallback, useState, useRef, FC, ChangeEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategoryId, setSearchValue } from '../../redux/filters/slice';
+import { selectFilter } from '../../redux/filters/selectors';
+import { useLocation } from 'react-router-dom';
 
 const SearchPanel: FC = () => {
     const [value, setValue] = useState('');
+    const [placeholder, setPlaceholder] = useState('');
     const dispatch = useDispatch();
+    const location = useLocation();
     const inpupRef = useRef<HTMLInputElement>(null);
+    const { searchValue } = useSelector(selectFilter);
 
+    useEffect(() => {
+        if (!searchValue) {
+            setValue('')
+        }
+    }, [searchValue])
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case '/drinks':
+                setPlaceholder('напитка');
+                break;
+            case '/burgers':
+                setPlaceholder('бургера');
+                break;
+            case '/salads':
+                setPlaceholder('салата');
+                break;
+            default:
+                setPlaceholder('пиццы');
+        }
+    }, [location])
+
+    //eslint-disable-next-line
     const updateSearchValue = useCallback(
         debounce((str: string) => {
             dispatch(setSearchValue(str));
+            dispatch(setCategoryId(0))
         }, 750)
         , []);
 
@@ -31,7 +60,7 @@ const SearchPanel: FC = () => {
             <span className="material-symbols-outlined">
                 search
             </span>
-            <input type="text" placeholder="Поиск пиццы..." className="search__panel"
+            <input type="text" placeholder={`Поиск ${placeholder}...`} className="search__panel"
                 value={value}
                 onChange={(e) => onChangeSearch(e)}
                 ref={inpupRef}

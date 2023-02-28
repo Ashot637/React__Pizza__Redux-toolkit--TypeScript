@@ -4,11 +4,10 @@ import './categories.scss';
 interface ICategoriesProps {
     categoryId: number,
     onClickCategory: (i: number) => void;
+    categories: string[]
 }
 
-const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
-const Categories: FC<ICategoriesProps> = memo(({ categoryId, onClickCategory }) => {
+const Categories: FC<ICategoriesProps> = memo(({ categoryId, onClickCategory, categories }) => {
 
     return (
         <div className="categories">

@@ -16,13 +16,23 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
         price: item.price
     }
 
+    const findSize = (size: number) => {
+        switch (size) {
+            case 0.25: case 0.33: case 0.5: case 1:
+                return size + 'л';
+            case 150: case 250:
+                return size + 'г'
+            default: return size + 'см'
+        }
+    }
+
     return (
         <div className="cart__item">
             <div className="cart__item-left">
                 <img src={item.img} alt="" className="cart__item-img" />
                 <div className="cart__item-info">
                     <div className="cart__item-title">{item.title}</div>
-                    <div className="cart__item-subtitle">{item.type}, {item.size}см.</div>
+                    <div className="cart__item-subtitle">{item.type ? `${item.type},` : ''} {findSize(item.size)}.</div>
                 </div>
             </div>
             <div className="cart__item-right">
