@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/React__Pizza__Redux-toolkit--TypeScript/static/css/main.242dd9c0.css",
-    "main.js": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.da262787.js",
+    "main.css": "/React__Pizza__Redux-toolkit--TypeScript/static/css/main.7ddc7293.css",
+    "main.js": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.f44a2ea2.js",
     "static/media/empty-cart.png": "/React__Pizza__Redux-toolkit--TypeScript/static/media/empty-cart.09551fc7eb1da38cf5ad.png",
     "index.html": "/React__Pizza__Redux-toolkit--TypeScript/index.html",
-    "main.242dd9c0.css.map": "/React__Pizza__Redux-toolkit--TypeScript/static/css/main.242dd9c0.css.map",
-    "main.da262787.js.map": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.da262787.js.map"
+    "main.7ddc7293.css.map": "/React__Pizza__Redux-toolkit--TypeScript/static/css/main.7ddc7293.css.map",
+    "main.f44a2ea2.js.map": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.f44a2ea2.js.map"
   },
   "entrypoints": [
-    "static/css/main.242dd9c0.css",
-    "static/js/main.da262787.js"
+    "static/css/main.7ddc7293.css",
+    "static/js/main.f44a2ea2.js"
   ]
 }
