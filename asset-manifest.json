@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/React__Pizza__Redux-toolkit--TypeScript/static/css/main.69cf6586.css",
-    "main.js": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.5202da61.js",
+    "main.js": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.167d4e96.js",
     "static/media/empty-cart.png": "/React__Pizza__Redux-toolkit--TypeScript/static/media/empty-cart.09551fc7eb1da38cf5ad.png",
     "index.html": "/React__Pizza__Redux-toolkit--TypeScript/index.html",
     "main.69cf6586.css.map": "/React__Pizza__Redux-toolkit--TypeScript/static/css/main.69cf6586.css.map",
-    "main.5202da61.js.map": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.5202da61.js.map"
+    "main.167d4e96.js.map": "/React__Pizza__Redux-toolkit--TypeScript/static/js/main.167d4e96.js.map"
   },
   "entrypoints": [
     "static/css/main.69cf6586.css",
-    "static/js/main.5202da61.js"
+    "static/js/main.167d4e96.js"
   ]
 }
