@@ -2,7 +2,7 @@ import './searchPanel.scss';
 import { debounce } from "debounce";
 import { useCallback, useState, useRef, FC, ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategoryId, setSearchValue } from '../../redux/filters/slice';
+import { setCategoryId, setPage, setSearchValue } from '../../redux/filters/slice';
 import { selectFilter } from '../../redux/filters/selectors';
 import { useLocation } from 'react-router-dom';
 
@@ -16,8 +16,9 @@ const SearchPanel: FC = () => {
 
     useEffect(() => {
         if (!searchValue) {
-            setValue('')
-        }
+            setValue('');
+        };
+        //eslint-disable-next-line
     }, [searchValue])
 
     useEffect(() => {
@@ -40,6 +41,7 @@ const SearchPanel: FC = () => {
     const updateSearchValue = useCallback(
         debounce((str: string) => {
             dispatch(setSearchValue(str));
+            dispatch(setPage(1))
             dispatch(setCategoryId(0))
         }, 750)
         , []);

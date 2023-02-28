@@ -6,6 +6,7 @@ import Pagination from "../components/pagination/Pagination";
 import { FC, useCallback, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../redux/store";
+//eslint-disable-next-line
 import { useNavigate } from "react-router-dom";
 import { selectFilter } from "../redux/filters/selectors";
 import { setCategoryId, setPage, setSearchValue, setSortType } from "../redux/filters/slice";
@@ -15,6 +16,7 @@ import { fetchPizzas } from "../redux/pizza/asyncActions";
 const categories = ['Все', 'Мясные', 'Вегетарианскые', 'Гриль', 'Острые', 'Закрытые'];
 
 const MainPage: FC = () => {
+    //eslint-disable-next-line
     const { categoryId, sortType, following, currentPage, searchValue, sortList } = useSelector(selectFilter);
     const dispatch = useAppDispatch();
 
